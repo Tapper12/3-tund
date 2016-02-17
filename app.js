@@ -86,13 +86,16 @@
       document.querySelector('.add-new-jar').addEventListener('click', this.addNewClick.bind(this));
     },
     addNewClick: function(event){
-      //Lisa uus purk
+      // lisa uus purk
       var title = document.querySelector('.title').value;
       var ingredients = document.querySelector('.ingredients').value;
-      console.log(title + ' ' + ingredients);
+      var date = document.querySelector('.date').value;
+      console.log(title + ' ' + ingredients + ' ' + date);
 
-      var new_jar = new Jar(title, ingredients);
-      document.querySelector('#list-view').innerHTML += new_jar.createHtmlElement();
+      var new_jar = new Jar(title, ingredients, date);
+      var li = new_jar.createHtmlElement();
+      document.querySelector('.list-of-jars').appendChild(li);
+
 
     },
     routeChange: function(event){
@@ -129,20 +132,47 @@
 
   };
 
-  var Jar = function(new_title, new_ingredients){
 
+  var Jar = function(new_title, new_ingredients, new_date){
     this.title = new_title;
     this.ingredients = new_ingredients;
-
+    this.date = new_date;
   };
 
   Jar.prototype = {
     createHtmlElement: function(){
+      // anda tagasi ilus html
 
-      return this.title + '<br>';
+      // li
+      //   span.letter
+      //     M
+      //   span.content
+      //     Maasikamoos | maasikas, õun
+
+      var li = document.createElement('li');
+
+      var span = document.createElement('span');
+      span.className = 'letter';
+
+      var letter = document.createTextNode(this.title.charAt(0));
+      span.appendChild(letter);
+
+      li.appendChild(span);
+
+      var content_span = document.createElement('span');
+      content_span.className = 'content';
+
+      var content = document.createTextNode(this.title + ' | ' + this.ingredients + ' | ' + this.date);
+      content_span.appendChild(content);
+
+      li.appendChild(content_span);
+
+      console.log(li);
+
+      return li;
     }
-
   };
+
 
   window.onload = function(){
     var app = new Moosipurk();
