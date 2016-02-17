@@ -52,6 +52,17 @@
     init: function(){
       console.log('rakendus käivitus');
       // Siia tuleb esialgne loogika
+      window.addEventListener('hashchange', this.routeChange.bind(this));
+
+      //vaatan, mis lehel olen
+      console.log(window.location.hash);
+      if(!window.location.hash){
+        window.location.hash = "home-view";
+      }else{
+        //hash oli olemas, läheb route käima
+        this.routeChange();
+
+      }
       // hakka kuulama hiireklõpse
       this.bindMouseEvents();
     },
@@ -62,6 +73,23 @@
       //console.log(event);
       this.click_count++;
       console.log(this.click_count);
+
+    },
+
+    routeChange: function(event){
+      console.log('>>> ' + window.location.hash);
+
+      //Lõikab hashtaagi ära
+      this.currentRoute = window.location.hash.slice(1);
+      //Kas leht on olemas
+      if(this.routes[this.currentRoute]){
+        console.log('>>> ' + this.currentRoute);
+
+      }else{
+        //404?
+        console.log('404');
+        window.location.hash = "home-view";
+      }
 
     }
   };
