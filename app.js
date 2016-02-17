@@ -87,9 +87,12 @@
     },
     addNewClick: function(event){
       //Lisa uus purk
-      var title = (.'title');
-      var ingredients = (.'ingredients');
+      var title = document.querySelector('.title').value;
+      var ingredients = document.querySelector('.ingredients').value;
       console.log(title + ' ' + ingredients);
+
+      var new_jar = new Jar(title, ingredients);
+      document.querySelector('#list-view').innerHTML += new_jar.createHtmlElement();
 
     },
     routeChange: function(event){
@@ -126,6 +129,20 @@
 
   };
 
+  var Jar = function(new_title, new_ingredients){
+
+    this.title = new_title;
+    this.ingredients = new_ingredients;
+
+  };
+
+  Jar.prototype = {
+    createHtmlElement: function(){
+
+      return this.title + '<br>';
+    }
+
+  };
 
   window.onload = function(){
     var app = new Moosipurk();
