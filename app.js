@@ -92,9 +92,15 @@
       var date = document.querySelector('.date').value;
       console.log(title + ' ' + ingredients + ' ' + date);
 
-      var new_jar = new Jar(title, ingredients, date);
-      var li = new_jar.createHtmlElement();
-      document.querySelector('.list-of-jars').appendChild(li);
+      if(title.value || ingredients.value || date.value === ""){
+        console.log("Midagi on puudu");
+
+      }else{
+        var new_jar = new Jar(title, ingredients, date);
+        var li = new_jar.createHtmlElement();
+        document.querySelector('.list-of-jars').appendChild(li);
+        console.log("salvestatud");
+      }
 
 
     },
