@@ -10,16 +10,41 @@
     }
     Moosipurk.instance = this; // this viitab moosipurgile
 
+    this.routes = Moosipurk.routes;
+
     console.log(this);
     //console.log('moosipurgi sees');
 
     // KÕIK MUUTUJAD, mis on üldised ja muudetavad
     this.click_count = 0;
+    this.currentRoute = 0; //Meeles, mis lehel olen(home-view ...)
+
 
 
 
     //panen rakenduse tööle
     this.init();
+  };
+
+  Moosipurk.routes = {
+
+    "home-view": {
+      render: function(){
+      //Käivitan kui jõuan lehele
+        console.log('JS avalehel');
+      }
+    },
+    "list-view": {
+      render: function(){
+        console.log('JS loendi lehel');
+      }
+    },
+    "manage-view": {
+      render: function(){
+        console.log('JS haldus lehel');
+      }
+    }
+
   };
 
   //kõik moosipurgi funktsioonid tulevad siia sisse
